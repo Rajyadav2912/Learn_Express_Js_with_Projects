@@ -1,6 +1,9 @@
+// create mongoose instance and fetch mongoose
 const mongoose = require("mongoose");
 
+// create connectivity arrow-function
 const connectWithDb = () => {
+  // write connect method in mongodb .connect(Urt, (flags newurlparser, topology))
   mongoose
     .connect(process.env.DATABASE_URL, {
       useNewUrlParser: true,
@@ -14,4 +17,5 @@ const connectWithDb = () => {
     });
 };
 
+// exports using module keyword
 module.exports = connectWithDb;
