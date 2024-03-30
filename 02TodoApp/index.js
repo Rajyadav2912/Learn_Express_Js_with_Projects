@@ -14,6 +14,7 @@ app.use(express.json());
 const todoRoutes = require("./Routes/todo");
 
 // mount the todo API routes mount means add or append data
+// base url ke sath rout ko append kr diya
 app.use("/api/v1", todoRoutes);
 
 // Start server

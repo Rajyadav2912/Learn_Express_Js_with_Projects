@@ -1,0 +1,50 @@
+[
+  {
+    "name": "iphone",
+    "price": 110,
+    "features": true,
+    "company": "Apple"
+  },
+  {
+    "name": "iphone10",
+    "price": 120,
+    "features": true,
+    "company": "Apple"
+  },
+  {
+    "name": "watchOS",
+    "price": 200,
+    "features": true,
+    "company": "Apple"
+  },
+  {
+    "name": "laptop",
+    "price": 250,
+    "features": true,
+    "company": "Apple"
+  },
+  {
+    "name": "iphone15",
+    "price": 234,
+    "features": true,
+    "company": "Apple"
+  },
+  {
+    "name": "windows10",
+    "price": 345,
+    "features": true,
+    "company": "Microsoft"
+  },
+  {
+    "name": "Pavallion Laptop",
+    "price": 154,
+    "features": true,
+    "company": "Flipkart"
+  },
+  {
+    "name": "Lenovo",
+    "price": 134,
+    "features": true,
+    "company": "Google"
+  }
+]
