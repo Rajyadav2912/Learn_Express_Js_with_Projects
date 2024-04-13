@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 // adding middleware
 app.use("/api/products", product_routes);
 
-const start = async (req, res) => {
+const start = async () => {
   try {
     await connectDB();
     app.listen(PORT, () => {

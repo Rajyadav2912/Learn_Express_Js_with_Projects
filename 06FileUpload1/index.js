@@ -9,7 +9,12 @@ const PORT = process.env.PORT || 4000;
 // middleware for parse json responses
 app.use(express.json());
 const fileupload = require("express-fileupload");
-app.use(fileupload());
+app.use(
+  fileupload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
 // import database and establish connection
 const DB = require("./Config/database");

@@ -2,49 +2,61 @@
   {
     "name": "iphone",
     "price": 110,
-    "features": true,
-    "company": "Apple"
+    "featured": false,
+    "company": "apple"
   },
   {
     "name": "iphone10",
     "price": 120,
-    "features": true,
-    "company": "Apple"
+    "featured": true,
+    "company": "apple"
   },
   {
     "name": "watchOS",
     "price": 200,
-    "features": true,
-    "company": "Apple"
+    "featured": false,
+    "company": "apple"
   },
   {
     "name": "laptop",
     "price": 250,
-    "features": true,
-    "company": "Apple"
+    "featured": false,
+    "company": "apple"
   },
   {
     "name": "iphone15",
     "price": 234,
-    "features": true,
-    "company": "Apple"
+    "featured": true,
+    "company": "apple"
   },
   {
     "name": "windows10",
     "price": 345,
-    "features": true,
-    "company": "Microsoft"
+    "featured": false,
+    "company": "microsoft"
   },
   {
     "name": "Pavallion Laptop",
     "price": 154,
-    "features": true,
-    "company": "Flipkart"
+    "featured": true,
+    "company": "flipkart"
   },
   {
     "name": "Lenovo",
     "price": 134,
-    "features": true,
-    "company": "Google"
+    "featured": true,
+    "company": "google"
+  },
+  {
+    "name": "Dell",
+    "price": 164,
+    "featured": true,
+    "company": "google"
+  },
+  {
+    "name": "Raj Yadav",
+    "price": 2920,
+    "featured": true,
+    "company": "microsoft"
   }
 ]

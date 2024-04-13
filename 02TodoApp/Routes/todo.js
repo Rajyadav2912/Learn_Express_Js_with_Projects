@@ -3,7 +3,7 @@ const router = express.Router();
 
 // import Controller
 const { createTodo } = require("../Controller/createTodo");
-const { getTodo, getTodoById } = require("../Controller/getTodo");
+const { getTodo, getTodoById } = require("../Controller/GetTodo");
 const { updateTodo } = require("../Controller/updatedTodo");
 const { deleteTodo } = require("../Controller/deleteTodo");
 // define API routes

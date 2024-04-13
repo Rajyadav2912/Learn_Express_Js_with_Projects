@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Price must be a required"],
   },
-  feature: {
+  featured: {
     type: Boolean,
     default: true,
   },
@@ -24,7 +24,7 @@ const ProductSchema = new mongoose.Schema({
   company: {
     type: String,
     enum: {
-      values: ["Apple", "Google", "Microsoft", "Flipkart"],
+      values: ["apple", "google", "microsoft", "flipkart"],
       message: `{values} is invalid Company`,
     },
   },
