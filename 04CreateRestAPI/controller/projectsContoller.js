@@ -33,7 +33,7 @@ const getProducts = async (req, res) => {
   }
 
   let page = Number(req.query.page) || 1;
-  let limit = Number(req.query.limit) || 3;
+  let limit = Number(req.query.limit) || 10;
 
   let skip = (page - 1) * limit;
 
@@ -41,16 +41,16 @@ const getProducts = async (req, res) => {
 
   console.log(queryObject);
 
-  const myData = await apiData;
+  const MyProduct = await apiData;
 
-  res.status(200).json({ myData });
+  res.status(200).json({ MyProduct });
 };
 
 const getProductsTesting = async (req, res) => {
-  const myData = await Product.find(req.query).sort("name -price");
+  const MyProduct = await Product.find(req.query).sort("name -price");
   console.log("😍 File: products.Js ~ Line 10 : ", req.query);
 
-  res.status(200).json({ myData });
+  res.status(200).json({ MyProduct });
 };
 
 module.exports = { getProducts, getProductsTesting };
