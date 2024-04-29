@@ -11,7 +11,7 @@ exports.localfileUpload = async (req, res) => {
     const file = req.files.file;
     console.log("File upload ho gyi hai=> ", file);
 
-    // create path where file need to be stored on server
+    // create path where file need to be stored on server path
     let path =
       __dirname + "/files/" + Date.now() + `.${file.name.split(".")[1]}`;
 
@@ -36,14 +36,18 @@ function isFileTypeSupported(type, supportedTypes) {
   return supportedTypes.includes(type);
 }
 
-async function uploadFileToCloudinary(file, folder) {
+async function uploadFileToCloudinary(file, folder, quality) {
   const options = { folder };
-  console.log("Temp file path: ", file.tempFilepath);
+  console.log("Temp file path: ", file.tempFilePath);
+
+  if (quality) {
+    options.quality = quality;
+  }
 
   options.resource_type = "auto";
 
   return await cloudinary.uploader
-    .upload(file.tempFilepath, options)
+    .upload(file.tempFilePath, options)
     .then(console.log("upload successfully"))
     .catch((error) => console.log(error));
 }
@@ -55,13 +59,15 @@ exports.imageUpload = async (req, res) => {
     const { name, tags, email } = req.body;
     console.log(name, tags, email);
 
-    const file = req.files.image;
+    const file = req.files.imageFile;
 
     console.log("File", file);
 
-    // validation
+    // validation supported extensions
     const supportedTypes = ["jpg", "jpeg", "png"];
+
     const fileType = file.name.split(".")[1].toLowerCase();
+
     console.log("File Type : ", fileType);
 
     if (!isFileTypeSupported(fileType, supportedTypes)) {
@@ -73,8 +79,9 @@ exports.imageUpload = async (req, res) => {
 
     // file format is supported
     console.log("uploading to folder");
+
     // cloudinary.uploader.upload(file.tempFilepath, "Folder");
-    const response = await uploadFileToCloudinary(file, "new folder");
+    const response = await uploadFileToCloudinary(file, "Codehelp");
     console.log(response);
 
     // db me entry save krna hn
@@ -85,7 +92,7 @@ exports.imageUpload = async (req, res) => {
       imageUrl: response.secure_url,
     });
 
-    // fileData.save();
+    fileData.save();
 
     res.json({
       success: true,
@@ -107,12 +114,67 @@ exports.videoUpload = async (req, res) => {
     const { name, tags, email } = req.body;
     console.log(name, tags, email);
 
-    const file = req.files.video;
+    const file = req.files.videoFile;
     console.log("File", file);
 
     // validation
     const supportedTypes = ["mp4", "mov"];
     const fileType = file.name.split(".")[1].toLowerCase();
+    console.log("File Type : ", fileType);
+
+    if (!isFileTypeSupported(fileType, supportedTypes)) {
+      return res.status(400).json({
+        success: false,
+        message: "Video File Formate or type not supported",
+      });
+    }
+
+    // file format is supported
+    console.log("uploading to folder");
+    const response = await uploadFileToCloudinary(file, "Codehelp");
+    console.log(response);
+
+    // db me entry save krna hn
+    const fileData = await File.create({
+      name,
+      tags,
+      email,
+      videoUrl: response.secure_url,
+    });
+
+    fileData.save();
+
+    res.json({
+      success: true,
+      videoUrl: response.secure_url,
+      message: "Video Uploaded Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+// imageSizeReducer,
+
+exports.imageSizeReducer = async (req, res) => {
+  try {
+    // data fetch
+    const { name, tags, email } = req.body;
+    console.log(name, tags, email);
+
+    const file = req.files.imageFile;
+
+    console.log("File", file);
+
+    // validation supported extensions
+    const supportedTypes = ["jpg", "jpeg", "png"];
+
+    const fileType = file.name.split(".")[1].toLowerCase();
+
     console.log("File Type : ", fileType);
 
     if (!isFileTypeSupported(fileType, supportedTypes)) {
@@ -124,7 +186,9 @@ exports.videoUpload = async (req, res) => {
 
     // file format is supported
     console.log("uploading to folder");
-    const response = await uploadFileToCloudinary(file, "Folder");
+
+    // cloudinary.uploader.upload(file.tempFilePath, "Folder");
+    const response = await uploadFileToCloudinary(file, "Codehelp", 90);
     console.log(response);
 
     // db me entry save krna hn
@@ -132,13 +196,15 @@ exports.videoUpload = async (req, res) => {
       name,
       tags,
       email,
-      videoUrl: response.secure_url,
+      imageUrl: response.secure_url,
     });
+
+    fileData.save();
 
     res.json({
       success: true,
-      videoUrl: response.secure_url,
-      message: "Video Uploaded Successfully",
+      imagesUrl: response.secure_url,
+      message: "Image Uploaded Successfully",
     });
   } catch (error) {
     console.log(error);

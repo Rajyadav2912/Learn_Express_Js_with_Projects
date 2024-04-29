@@ -1,5 +1,4 @@
 const Product = require("../model/productModel");
-const { link } = require("../routes/productRoutes");
 
 const getProducts = async (req, res) => {
   const { company, name, featured, sort, select } = req.query;
